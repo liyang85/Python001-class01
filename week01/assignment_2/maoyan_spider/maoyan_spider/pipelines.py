@@ -10,8 +10,6 @@ from itemadapter import ItemAdapter
 
 class MaoyanSpiderPipeline:
     def process_item(self, item, spider):
-        # return item
-
         name = item['name']
         category = item['category']
         release_info = item['release_info']

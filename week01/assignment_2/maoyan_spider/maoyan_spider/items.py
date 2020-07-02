@@ -7,10 +7,6 @@ import scrapy
 
 
 class MaoyanSpiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    # pass
-
     name = scrapy.Field()
     category = scrapy.Field()
     release_info = scrapy.Field()
