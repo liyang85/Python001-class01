@@ -1,6 +1,31 @@
 # 学习笔记（第一周）
 
-[toc]
+- [学习笔记（第一周）](#学习笔记第一周)
+  - [Python 内置功能](#python-内置功能)
+    - [常用函数](#常用函数)
+      - [`help()`](#help)
+      - [`type()`](#type)
+      - [`dir()`](#dir)
+    - [f-string](#f-string)
+    - [yield](#yield)
+  - [爬虫方案一：使用第三方库的组合](#爬虫方案一使用第三方库的组合)
+    - [requests](#requests)
+    - [Beautiful Soup](#beautiful-soup)
+      - [搜索文档树：`.find()` and `.find_all()`](#搜索文档树find-and-find_all)
+      - [获取属性值：`.get()`](#获取属性值get)
+    - [XPath and lxml](#xpath-and-lxml)
+    - [pandas](#pandas)
+  - [爬虫方案二：使用 Scrapy 爬虫框架](#爬虫方案二使用-scrapy-爬虫框架)
+    - [初始化 Scrapy 项目](#初始化-scrapy-项目)
+    - [生成一个爬虫](#生成一个爬虫)
+    - [编辑 `settings.py`](#编辑-settingspy)
+      - [USER_AGENT](#user_agent)
+      - [ITEM_PIPELINES](#item_pipelines)
+    - [编辑 `items.py`](#编辑-itemspy)
+    - [编辑 `pipelines.py`](#编辑-pipelinespy)
+    - [编写爬虫逻辑 `douban_movie.py`](#编写爬虫逻辑-douban_moviepy)
+    - [运行爬虫](#运行爬虫)
+  - [作业难点](#作业难点)
 
 ## Python 内置功能
 

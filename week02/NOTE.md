@@ -1,6 +1,8 @@
 # 学习笔记（第二周）
 
-[toc]
+- [学习笔记（第二周）](#学习笔记第二周)
+  - [使用 PyMySQL 连接 MySQL](#使用-pymysql-连接-mysql)
+    - [游标（Cursor）](#游标cursor)
 
 ## 使用 PyMySQL 连接 MySQL
 
