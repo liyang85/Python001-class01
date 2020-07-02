@@ -6,7 +6,7 @@
 
 ## 使用 PyMySQL 连接 MySQL
 
-```py
+```bash
 # 安装 PyMySQL
 
 python3 -m pip install pymysql

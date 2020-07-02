@@ -16,15 +16,15 @@
     - [XPath and lxml](#xpath-and-lxml)
     - [pandas](#pandas)
   - [爬虫方案二：使用 Scrapy 爬虫框架](#爬虫方案二使用-scrapy-爬虫框架)
-    - [初始化 Scrapy 项目](#初始化-scrapy-项目)
-    - [生成一个爬虫](#生成一个爬虫)
-    - [编辑 `settings.py`](#编辑-settingspy)
-      - [USER_AGENT](#user_agent)
-      - [ITEM_PIPELINES](#item_pipelines)
-    - [编辑 `items.py`](#编辑-itemspy)
-    - [编辑 `pipelines.py`](#编辑-pipelinespy)
-    - [编写爬虫逻辑 `douban_movie.py`](#编写爬虫逻辑-douban_moviepy)
-    - [运行爬虫](#运行爬虫)
+    - [1. 初始化 Scrapy 项目](#1-初始化-scrapy-项目)
+    - [2. 生成一个爬虫](#2-生成一个爬虫)
+    - [3. 编辑 `settings.py`](#3-编辑-settingspy)
+      - [`USER_AGENT`](#user_agent)
+      - [`ITEM_PIPELINES`](#item_pipelines)
+    - [4. 编辑 `items.py`](#4-编辑-itemspy)
+    - [5. 编辑 `pipelines.py`](#5-编辑-pipelinespy)
+    - [6. 编写爬虫逻辑 `douban_movie.py`](#6-编写爬虫逻辑-douban_moviepy)
+    - [7. 运行爬虫](#7-运行爬虫)
   - [作业难点](#作业难点)
 
 ## Python 内置功能
@@ -204,7 +204,7 @@ python3 -m pip install pandas
 >
 > from <https://docs.scrapy.org/en/latest/>
 
-「web scraping」可以译为「网页抓取」，Scrapy 就是 Scraping 和 Python 的组合词。
+Web scraping 可以译为「网页抓取」，Scrapy 就是 Scraping 和 Python 的组合词。
 
 关于 Scrapy 的读音：
 
@@ -218,7 +218,7 @@ python3 -m pip install pandas
 python3 -m pip install scrapy
 ```
 
-### 初始化 Scrapy 项目
+### 1. 初始化 Scrapy 项目
 
 ```bash
 # 初始化一个项目，项目名称叫做 douban_movie_spider
@@ -270,7 +270,7 @@ douban_movie_spider/
 - `pipelines.py`
   - 设置如何保存爬取的数据。
 
-### 生成一个爬虫
+### 2. 生成一个爬虫
 
 可以针对一个或多个域名（domain）生成（generate）一个爬虫，命令如下：
 
@@ -314,9 +314,9 @@ $ tree -cCDF .
 - 与爬虫同名的 `douban_movie.py`，后续将在这个文件中实现爬虫逻辑。
 - 两个 `__pycache__` 目录中的 pyc 文件。
 
-### 编辑 `settings.py`
+### 3. 编辑 `settings.py`
 
-#### USER_AGENT
+#### `USER_AGENT`
 
 使用 [fake-useragent 库](https://github.com/hellysmile/fake-useragent) 随机生成 User-Agent。
 
@@ -328,50 +328,40 @@ python3 -m pip install fake-useragent
 
 ```py
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'douban_movie_spider (+http://www.yourdomain.com)'
 
 # https://github.com/hellysmile/fake-useragent
 from fake_useragent import UserAgent
 ua = UserAgent()
 my_ua = ua.random
+
 USER_AGENT = my_ua
 ```
 
-#### ITEM_PIPELINES
+#### `ITEM_PIPELINES`
 
 ```py
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'douban_movie_spider.pipelines.DoubanMovieSpiderPipeline': 300,
-#}
 
 ITEM_PIPELINES = {
     'douban_movie_spider.pipelines.DoubanMovieSpiderPipeline': 300,
 }
 ```
 
-### 编辑 `items.py`
+### 4. 编辑 `items.py`
 
 ```py
 class DoubanMovieSpiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    # pass
-
     name = scrapy.Field()
     link = scrapy.Field()
     rating = scrapy.Field()
     summary = scrapy.Field()
 ```
 
-### 编辑 `pipelines.py`
+### 5. 编辑 `pipelines.py`
 
 ```py
 class DoubanMovieSpiderPipeline:
-    # def process_item(self, item, spider):
-    #     return item
-
     def process_item(self, item, spider):
         name = item['name']
         link = item['link']
@@ -383,7 +373,7 @@ class DoubanMovieSpiderPipeline:
         return item
 ```
 
-### 编写爬虫逻辑 `douban_movie.py`
+### 6. 编写爬虫逻辑 `douban_movie.py`
 
 ```py
 import scrapy
@@ -395,9 +385,6 @@ class DoubanMovieSpider(scrapy.Spider):
     name = 'douban_movie'
     allowed_domains = ['movie.douban.com']
     start_urls = ['https://movie.douban.com/top250']
-
-    # def parse(self, response):
-    #     pass
 
     def start_requests(self):
         for i in range(10):
@@ -420,10 +407,15 @@ class DoubanMovieSpider(scrapy.Spider):
             yield item
 ```
 
-### 运行爬虫
+### 7. 运行爬虫
 
 ```bash
-$ scrapy crawl douban_movie
+scrapy crawl douban_movie
+```
+
+输出的日志如下：
+
+```txt
 2020-06-28 20:07:27 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: douban_movie_spider)
 2020-06-28 20:07:27 [scrapy.utils.log] INFO: Versions: lxml 4.5.1.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, Jun 17 2020, 11:28:02) - [Clang 11.0.3 (clang-1103.0.32.29)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Darwin-19.5.0-x86_64-i386-64bit
 2020-06-28 20:07:27 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
