@@ -104,6 +104,11 @@ print(f'HTTP status code: {response.status_code}')
 - yield 约等于 return，二者都会返回值。
 - yield 的性能（内存占用）优于 return，尤其是在数据量非常大的时候。
 
+两篇教程：
+
+- [Python yield 使用浅析](https://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/)
+- [How to Use Generators and yield in Python](https://realpython.com/introduction-to-python-generators/)
+
 ## 爬虫方案一：使用第三方库的组合
 
 ### requests
