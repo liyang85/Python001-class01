@@ -21,6 +21,7 @@
       - [2. 修改 `middlewares.py`](#2-修改-middlewarespy)
       - [3. 修改爬虫逻辑 `spiders/httpbin.py`](#3-修改爬虫逻辑-spidershttpbinpy)
       - [运行爬虫](#运行爬虫)
+  - [作业难点](#作业难点)
 
 ## 使用 PyMySQL 连接 MySQL
 
@@ -134,7 +135,38 @@ print(f'Random UA: {ua.random}')
 #### 通过 requests 的 `Session()` 方法获取 Cookies
 
 ```py
-# 待补充
+import requests
+from fake_useragent import UserAgent
+
+ua = UserAgent(verify_ssl=False)
+my_ua = ua.random
+
+# 对于石墨网（shimo.im），必须添加 x-requested-with 请求头，否则将返回 403
+headers = {
+    'user-agent': my_ua,
+    'x-requested-with': 'XmlHttpRequest',
+    'referer': 'https://shimo.im/login?from=home',
+}
+
+# 石墨网支持两种登录方式：手机、邮箱，两种方式的 Form Data 不同
+form_data = {
+    'mobile': '+8619012345678',
+    'password': 'xxx_yyy',
+}
+
+# 创建会话（session）
+s = requests.Session()
+
+# 在会话中使用 post 方法登录
+login_url = "https://shimo.im/lizard-api/auth/password/login"
+r1 = s.post(login_url, data=form_data, headers=headers)
+print('Status code of r1: ' + str(r1.status_code))
+
+# 登录成功，使用 get 方法获取其它链接
+profile_url = 'https://shimo.im/profile'
+r2 = s.get(profile_url, headers=headers)
+print('Status code of r2: ' + str(r2.status_code))
+# 虽然状态码是 200，但爬取的几乎全是 JS，没有浏览器访问时可见的 HTML 元素
 ```
 
 #### 通过 WebDriver 自动登录并获取 Cookies
@@ -385,3 +417,11 @@ $ http_proxy='' curl http://httpbin.org/ip
   "origin": "202.104.xxx.xxx"
 }
 ```
+
+## 作业难点
+
+- 对 Scrapy 框架的了解非常少，只知道视频课程中出现过的类，其它常用的类都不了解。
+  - 解决方法：多问老师，多读文档，多写代码！
+
+- 爬取网站时，对可能的返回内容不熟悉，看到一大堆 JS 就认为是被反爬了，实际上「登录」这一步已经成功了。
+  - 解决方法：仔细查看题目要求。如果发现爬取的内容有异常，首先和浏览器访问结果进行对比。
