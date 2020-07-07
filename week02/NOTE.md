@@ -92,7 +92,7 @@ MySQL version:  ('8.0.19',)
 
 爬虫与反爬虫是一对孪生兄弟，彼此之间联系紧密，想要学好爬虫，必须了解反爬虫技术，并在此基础上破解反爬虫技术设置的障碍，这个过程可以叫做「反反爬虫」，读起来有点儿拗口，但理解起来不难。
 
-下面是一张爬虫与反爬虫的攻防示意图，看完之后有一种「道高一尺、魔高一丈」的感觉，同时还想起了一句话：进攻总是比防守容易。
+下面是一张爬虫与反爬虫的攻防示意图，看完之后有一种「道高一尺、魔高一丈」的感觉，自然而然就想起了一句话：**进攻总是比防守容易**。
 
 ![crawler_attack_defending](https://i.loli.net/2020/07/04/jMTqu3dvslgPYWQ.png)
 
@@ -373,7 +373,7 @@ $ scrapy crawl httpbin --nolog
 ```bash
 $ scrapy crawl httpbin --nolog
 {
-  "origin": "202.104.114.145, 1.255.48.197"
+  "origin": "202.104.xxx.xxx, 1.255.48.197"
 }
 ```
 
@@ -382,6 +382,6 @@ $ scrapy crawl httpbin --nolog
 ```bash
 $ http_proxy='' curl http://httpbin.org/ip
 {
-  "origin": "202.104.114.145"
+  "origin": "202.104.xxx.xxx"
 }
 ```
