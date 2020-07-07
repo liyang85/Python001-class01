@@ -58,8 +58,8 @@ DOWNLOADER_MIDDLEWARES = {
 }
 
 # 添加代理 IP 列表
-# Repo: <https://github.com/jiangxianli/ProxyIpLib>
-# IPs: <https://ip.jiangxianli.com/api/proxy_ips>
+# Repo: <https://github.com/clarketm/proxy-list>
+# IPs: `curl "http://pubproxy.com/api/proxy?limit=3&format=txt&type=http&https=true"`
 #
 HTTP_PROXY_LIST = [
     'https://181.211.38.138:8080',
