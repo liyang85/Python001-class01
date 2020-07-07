@@ -16,6 +16,7 @@
     - [XPath and lxml](#xpath-and-lxml)
     - [pandas](#pandas)
   - [爬虫方案二：使用 Scrapy 爬虫框架](#爬虫方案二使用-scrapy-爬虫框架)
+    - [安装 Scrapy](#安装-scrapy)
     - [1. 初始化 Scrapy 项目](#1-初始化-scrapy-项目)
     - [2. 生成一个爬虫](#2-生成一个爬虫)
     - [3. 编辑 `settings.py`](#3-编辑-settingspy)
@@ -217,11 +218,26 @@ Web scraping 可以译为「网页抓取」，Scrapy 就是 Scraping 和 Python 
 >
 > from <https://www.wikiwand.com/en/Scrapy>
 
-```bash
-# 安装 Scrapy
+### 安装 Scrapy
 
+```bash
 python3 -m pip install scrapy
 ```
+
+添加 Bash 命令行补全功能：
+
+```bash
+# 1. download the script
+curl -O 'https://raw.githubusercontent.com/scrapy/scrapy/master/extras/scrapy_bash_completion'
+
+# 2. move the script to the right directory
+mv scrapy_bash_completion /usr/local/etc/bash_completion.d/
+
+# 3. activate the script
+source /usr/local/etc/bash_completion.d/scrapy_bash_completion
+```
+
+完成以上三步之后，再输入 `scrapy startproject` 这样的命令，就可以利用自动补全功能简化输入：`scra <tab> st <tab>`，这里的 `<tab>` 代表键盘上的 TAB 键。
 
 ### 1. 初始化 Scrapy 项目
 
