@@ -94,7 +94,7 @@ MySQL version:  ('8.0.19',)
 
 下面是一张爬虫与反爬虫的攻防示意图，看完之后有一种「道高一尺、魔高一丈」的感觉，自然而然就想起了一句话：**进攻总是比防守容易**。
 
-![crawler_attack_defending](https://i.loli.net/2020/07/04/jMTqu3dvslgPYWQ.png)
+![crawler attack vs defending](./images/crawler_attack_defending.png)
 
 ### 绕过反爬虫第一招：模拟浏览器正常请求
 
@@ -147,7 +147,7 @@ print(f'Random UA: {ua.random}')
 
 为了应对爬虫，现如今的验证码可谓千姿百态，本周的课程主要讲述如何识别最普通的「字符」验证码（如下图所示）。
 
-![captcha image](https://i.loli.net/2020/07/04/8OJa7lzMsAextTj.png)
+![captcha image](./images/captcha.jpg)
 
 #### 1. 下载验证码图片
 
