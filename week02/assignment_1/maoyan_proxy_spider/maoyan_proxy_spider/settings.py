@@ -15,6 +15,8 @@ NEWSPIDER_MODULE = 'maoyan_proxy_spider.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'maoyan_proxy_spider (+http://www.yourdomain.com)'
+ua_ipad = 'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
+USER_AGENT = ua_ipad
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -50,9 +52,20 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'maoyan_proxy_spider.middlewares.MaoyanProxySpiderDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'maoyan_proxy_spider.middlewares.MaoyanProxySpiderDownloaderMiddleware': 543,
+    'maoyan_proxy_spider.middlewares.RandomHttpProxyMiddleware': 400,
+}
+
+# 添加代理 IP 列表
+# Repo: <https://github.com/jiangxianli/ProxyIpLib>
+# IPs: <https://ip.jiangxianli.com/api/proxy_ips>
+#
+HTTP_PROXY_LIST = [
+    'https://181.211.38.138:8080',
+    'https://46.174.234.166:8080',
+    'https://188.40.183.191:1080',
+]
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -62,9 +75,17 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'maoyan_proxy_spider.pipelines.MaoyanProxySpiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'maoyan_proxy_spider.pipelines.MaoyanProxySpiderPipeline': 300,
+}
+
+# All configuration items of Scrapy must be UPPERCASE!
+MYSQL_HOST = 'localhost'
+MYSQL_PORT = 3306
+MYSQL_DB_NAME = 'spiders'
+MYSQL_TBL_NAME = 'maoyan'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'root_123'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
