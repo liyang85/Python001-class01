@@ -96,6 +96,20 @@ print(f'HTTP status code: {response.status_code}')
 
 几种格式化方式的详细对比参见 [Python 3's f-Strings: An Improved String Formatting Syntax (Guide)](https://realpython.com/python-f-strings/) 。
 
+> 在冒号（`:`）后面传递一个整数可以让该字段成为最小字符宽度。这在使列对齐时很有用。
+>
+> ```py
+> >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
+> >>> for name, phone in table.items():
+> ...     print(f'{name:10} ==> {phone:10d}')
+> ...
+> Sjoerd     ==>       4127
+> Jack       ==>       4098
+> Dcab       ==>       7678
+> ```
+>
+> from <https://docs.python.org/zh-cn/3.7/tutorial/inputoutput.html#formatted-string-literals>
+
 ### yield
 
 单词 yield 的其中一个含义就是「产生（收益）」。在 Python 中，**带有 yield 语句的函数就不再是一个普通的函数，而是一个「生成器」函数**。
