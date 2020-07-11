@@ -64,6 +64,38 @@ dir(...)
 ...
 ```
 
+help 命令还有一种用法：直接在交互模式输入 `help()`，注意圆括号里不带任何参数，此时就会进入交互式的「help utility」。
+
+```py
+>>> help()
+```
+
+```txt
+Welcome to Python 3.7's help utility!
+
+If this is your first time using Python, you should definitely check out
+the tutorial on the Internet at https://docs.python.org/3.7/tutorial/.
+
+Enter the name of any module, keyword, or topic to get help on writing
+Python programs and using Python modules.  To quit this help utility and
+return to the interpreter, just type "quit".
+
+To get a list of available modules, keywords, symbols, or topics, type
+"modules", "keywords", "symbols", or "topics".  Each module also comes
+with a one-line summary of what it does; to list the modules whose name
+or summary contain a given string such as "spam", type "modules spam".
+```
+
+可以在 help utility 这个界面查询可用的模块、关键字、函数等等。
+
+```py
+help> modules
+```
+
+```txt
+Please wait a moment while I gather a list of all available modules...
+```
+
 #### `type()`
 
 ```py
